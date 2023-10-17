@@ -2,7 +2,7 @@ using Share.Domain.Commons;
 
 namespace Share.Domain.Entities;
 
-public class Comment:Auditable
+public class Reply:Auditable
 {
     public string Text { get; set; }
 
@@ -12,5 +12,6 @@ public class Comment:Auditable
     public long StoryId { get; set; }
     public Story Story { get; set; }
 
-    public ICollection<Reply> Replies { get; set; }
+    public long CommentId { get; set; }
+    public Comment Comment { get; set; }
 }
