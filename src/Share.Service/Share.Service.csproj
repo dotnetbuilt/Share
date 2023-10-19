@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Share.DataAccess\Share.DataAccess.csproj" />
       <ProjectReference Include="..\Share.Domain\Share.Domain.csproj" />
     </ItemGroup>
@@ -19,5 +15,6 @@
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
     </ItemGroup>
+
 
 </Project>
