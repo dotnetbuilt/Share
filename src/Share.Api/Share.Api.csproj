@@ -18,6 +18,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Share.DataAccess\Share.DataAccess.csproj" />
       <ProjectReference Include="..\Share.Domain\Share.Domain.csproj" />
+      <ProjectReference Include="..\Share.Service\Share.Service.csproj" />
     </ItemGroup>
 
     <ItemGroup>
