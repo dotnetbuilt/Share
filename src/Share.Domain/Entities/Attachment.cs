@@ -1,8 +1,9 @@
+using Share.Domain.Commons;
+
 namespace Share.Domain.Entities;
 
-public class Attachment
+public class Attachment:BaseEntity
 {
-    public long Id { get; set; }
     public string FileName { get; set; }
     public string FilePath { get; set; }
 }
