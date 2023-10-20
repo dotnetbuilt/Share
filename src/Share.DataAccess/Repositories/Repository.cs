@@ -46,7 +46,7 @@ public class Repository<TEntity>: IRepository<TEntity> where TEntity : BaseEntit
         if(includes != null)
             entities = includes.Aggregate(entities, (current, include) => current.Include(include));
 
-        var result = await entities.FirstOrDefaultAsync();
+        var result = await entities.FirstOrDefaultAsync(entity => !entity.IsDeleted);
         return result;
     }
 
@@ -58,6 +58,6 @@ public class Repository<TEntity>: IRepository<TEntity> where TEntity : BaseEntit
         if(includes != null)
             entities = includes.Aggregate(entities, (current, include) => current.Include(include));
 
-        return entities;
+        return entities.Where(entity => !entity.IsDeleted);
     }
 }
