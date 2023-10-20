@@ -9,4 +9,5 @@ public interface IStoryService
     ValueTask<bool> RemoveAsync(long storyId);
     ValueTask<StoryResultDto> RetrieveByIdAsync(long storyId);
     ValueTask<IEnumerable<StoryResultDto>> RetrieveAllByUserIdAsync(long userId);
+    ValueTask<IEnumerable<StoryResultDto>> RetrieveAllAsync();
 }

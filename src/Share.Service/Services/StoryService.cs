@@ -43,7 +43,8 @@ public class StoryService:IStoryService
 
     public async ValueTask<StoryResultDto> ModifyAsync(StoryUpdateDto dto)
     {
-        var existStory = await _unitOfWork.StoryRepository.SelectAsync(expression: story => story.Id == dto.Id)
+        var existStory = await _unitOfWork.StoryRepository.
+                             SelectAsync(expression: story => story.Id == dto.Id,includes:new[]{"User"})
                          ?? throw new NotFoundException(message: "Story is not found");
 
         var mappedStory = _mapper.Map(source: dto, destination: existStory);
@@ -56,7 +57,8 @@ public class StoryService:IStoryService
 
     public async ValueTask<bool> RemoveAsync(long storyId)
     {
-        var existStory = await _unitOfWork.StoryRepository.SelectAsync(expression: story => story.Id == storyId)
+        var existStory = await _unitOfWork.StoryRepository.
+                             SelectAsync(expression: story => story.Id == storyId,includes:new[]{"User"})
                          ?? throw new NotFoundException(message: "Story is not found");
         
         _unitOfWork.StoryRepository.Delete(entity:existStory);
@@ -67,7 +69,8 @@ public class StoryService:IStoryService
 
     public async ValueTask<StoryResultDto> RetrieveByIdAsync(long storyId)
     {
-        var existStory = await _unitOfWork.StoryRepository.SelectAsync(expression: story => story.Id == storyId)
+        var existStory = await _unitOfWork.StoryRepository.
+                             SelectAsync(expression: story => story.Id == storyId,includes:new[]{"User"})
                          ?? throw new NotFoundException(message: "Story is not found");
 
         return _mapper.Map<StoryResultDto>(source: existStory);
@@ -76,7 +79,15 @@ public class StoryService:IStoryService
     public async ValueTask<IEnumerable<StoryResultDto>> RetrieveAllByUserIdAsync(long userId)
     {
         var stories = await _unitOfWork.StoryRepository.
-            SelectAll(expression: story => story.UserId == userId).ToListAsync();
+            SelectAll(expression: story => story.UserId == userId,includes:new[]{"User"}).ToListAsync();
+
+        return _mapper.Map<IEnumerable<StoryResultDto>>(source: stories);
+    }
+
+    public async ValueTask<IEnumerable<StoryResultDto>> RetrieveAllAsync()
+    {
+        var stories = await _unitOfWork.StoryRepository.
+            SelectAll(includes:new[]{"User"}).ToListAsync();
 
         return _mapper.Map<IEnumerable<StoryResultDto>>(source: stories);
     }

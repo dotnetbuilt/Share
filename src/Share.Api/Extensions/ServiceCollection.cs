@@ -15,6 +15,7 @@ public static class ServiceCollection
         services.AddScoped<IAttachmentService, AttachmentService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserProfileImageService, UserProfileImageService>();
+        services.AddScoped<IStoryService, StoryService>();
 
         services.AddAutoMapper(typeof(MappingProfile));
     }
