@@ -5,7 +5,7 @@ namespace Share.Service.Interfaces;
 public interface IUserService
 {
     ValueTask<UserResultDto> AddAsync(UserCreationDto dto);
-    ValueTask<UserUpdateDto> ModifyAsync(UserUpdateDto dto);
+    ValueTask<UserResultDto> ModifyAsync(UserUpdateDto dto);
     ValueTask<bool> RemoveAsync(long userId);
     ValueTask<UserResultDto> RetrieveByIdAsync(long userId);
     ValueTask<IEnumerable<UserResultDto>> RetrieveAllAsync();
