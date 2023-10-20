@@ -37,6 +37,7 @@ public class MappingProfile:Profile
         
         //LikedStory
         CreateMap<LikedStory, LikedStoryCreationDto>().ReverseMap();
+        CreateMap<LikedStory, LikedStoryResultDto>().ReverseMap();
         
         //Reply
         CreateMap<Reply, ReplyCreationDto>().ReverseMap();
