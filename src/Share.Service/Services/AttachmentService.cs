@@ -11,12 +11,10 @@ namespace Share.Service.Services;
 
 public class AttachmentService:IAttachmentService
 {
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
-
-    public AttachmentService(IMapper mapper, IUnitOfWork unitOfWork)
+     
+    public AttachmentService(IUnitOfWork unitOfWork)
     {
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
 
