@@ -6,7 +6,7 @@ namespace Share.Service.Interfaces;
 public interface IFollowService
 {
     ValueTask<bool> AddAsync(FollowCreationDto dto);
-    ValueTask<bool> RemoveAsync(long followerId);
+    ValueTask<bool> RemoveAsync(long followId);
     ValueTask<IEnumerable<UserResultDto>> RetrieveAllFollowingsByFollowerIdAsync(long followerId);
     ValueTask<IEnumerable<UserResultDto>> RetrieveAllFollowersByFollowingIdAsync(long followingId);
     ValueTask<long> RetrieveNumberOfFollowersAsync(long followingId);
