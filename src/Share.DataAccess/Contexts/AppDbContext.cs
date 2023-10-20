@@ -3,7 +3,6 @@ using Share.Domain.Entities.Attachments;
 using Share.Domain.Entities.Comments;
 using Share.Domain.Entities.Follows;
 using Share.Domain.Entities.LikedStories;
-using Share.Domain.Entities.Replies;
 using Share.Domain.Entities.SavedStories;
 using Share.Domain.Entities.Stories;
 using Share.Domain.Entities.StoryImages;
@@ -23,7 +22,6 @@ public class AppDbContext:DbContext
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Follow> Follows { get; set; }
     public DbSet<LikedStory> LikedStories { get; set; }
-    public DbSet<Reply> Replies { get; set; }
     public DbSet<SavedStory> SavedStories { get; set; }
     public DbSet<Story> Stories { get; set; }
     public DbSet<StoryImage> StoryImages { get; set; }

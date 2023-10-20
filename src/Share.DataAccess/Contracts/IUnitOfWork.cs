@@ -2,7 +2,6 @@ using Share.Domain.Entities.Attachments;
 using Share.Domain.Entities.Comments;
 using Share.Domain.Entities.Follows;
 using Share.Domain.Entities.LikedStories;
-using Share.Domain.Entities.Replies;
 using Share.Domain.Entities.SavedStories;
 using Share.Domain.Entities.Stories;
 using Share.Domain.Entities.StoryImages;
@@ -17,7 +16,6 @@ public interface IUnitOfWork:IDisposable
     IRepository<Comment> CommentRepository { get; }
     IRepository<Follow> FollowRepository { get; }
     IRepository<LikedStory> LikedStoryRepository { get; }
-    IRepository<Reply> ReplyRepository { get; }
     IRepository<SavedStory> SavedStoryRepository { get; }
     IRepository<Story> StoryRepository { get; }
     IRepository<StoryImage> StoryImageRepository { get; }

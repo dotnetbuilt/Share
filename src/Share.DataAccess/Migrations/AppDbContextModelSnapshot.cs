@@ -22,7 +22,7 @@ namespace Share.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Share.Domain.Entities.Attachment", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Attachments.Attachment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("Attachments");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Comment", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Comments.Comment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Follow", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Follows.Follow", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -114,7 +114,7 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("Follows");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.LikedStory", b =>
+            modelBuilder.Entity("Share.Domain.Entities.LikedStories.LikedStory", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,48 +143,7 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("LikedStories");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Reply", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CommentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<long>("StoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("StoryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Replies");
-                });
-
-            modelBuilder.Entity("Share.Domain.Entities.SavedStory", b =>
+            modelBuilder.Entity("Share.Domain.Entities.SavedStories.SavedStory", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -213,7 +172,7 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("SavedStories");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Story", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Stories.Story", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -257,7 +216,7 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("Stories");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.StoryImage", b =>
+            modelBuilder.Entity("Share.Domain.Entities.StoryImages.StoryImage", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -286,7 +245,36 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("StoryImages");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.User", b =>
+            modelBuilder.Entity("Share.Domain.Entities.UserProfileImages.UserProfileImage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AttachmentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserProfileImages");
+                });
+
+            modelBuilder.Entity("Share.Domain.Entities.Users.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -327,44 +315,15 @@ namespace Share.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.UserProfileImage", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Comments.Comment", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("AttachmentId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AttachmentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserProfileImages");
-                });
-
-            modelBuilder.Entity("Share.Domain.Entities.Comment", b =>
-                {
-                    b.HasOne("Share.Domain.Entities.Story", "Story")
+                    b.HasOne("Share.Domain.Entities.Stories.Story", "Story")
                         .WithMany()
                         .HasForeignKey("StoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Share.Domain.Entities.User", "User")
+                    b.HasOne("Share.Domain.Entities.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -375,15 +334,15 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Follow", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Follows.Follow", b =>
                 {
-                    b.HasOne("Share.Domain.Entities.User", "Follower")
+                    b.HasOne("Share.Domain.Entities.Users.User", "Follower")
                         .WithMany()
                         .HasForeignKey("FollowerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Share.Domain.Entities.User", "Following")
+                    b.HasOne("Share.Domain.Entities.Users.User", "Following")
                         .WithMany()
                         .HasForeignKey("FollowingId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -394,15 +353,15 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("Following");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.LikedStory", b =>
+            modelBuilder.Entity("Share.Domain.Entities.LikedStories.LikedStory", b =>
                 {
-                    b.HasOne("Share.Domain.Entities.Story", "Story")
+                    b.HasOne("Share.Domain.Entities.Stories.Story", "Story")
                         .WithMany()
                         .HasForeignKey("StoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Share.Domain.Entities.User", "User")
+                    b.HasOne("Share.Domain.Entities.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -413,42 +372,15 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Reply", b =>
+            modelBuilder.Entity("Share.Domain.Entities.SavedStories.SavedStory", b =>
                 {
-                    b.HasOne("Share.Domain.Entities.Comment", "Comment")
-                        .WithMany("Replies")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Share.Domain.Entities.Story", "Story")
+                    b.HasOne("Share.Domain.Entities.Stories.Story", "Story")
                         .WithMany()
                         .HasForeignKey("StoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Share.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("Story");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Share.Domain.Entities.SavedStory", b =>
-                {
-                    b.HasOne("Share.Domain.Entities.Story", "Story")
-                        .WithMany()
-                        .HasForeignKey("StoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Share.Domain.Entities.User", "User")
+                    b.HasOne("Share.Domain.Entities.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -459,9 +391,9 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Story", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Stories.Story", b =>
                 {
-                    b.HasOne("Share.Domain.Entities.User", "User")
+                    b.HasOne("Share.Domain.Entities.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -470,15 +402,15 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.StoryImage", b =>
+            modelBuilder.Entity("Share.Domain.Entities.StoryImages.StoryImage", b =>
                 {
-                    b.HasOne("Share.Domain.Entities.Attachment", "Attachment")
+                    b.HasOne("Share.Domain.Entities.Attachments.Attachment", "Attachment")
                         .WithMany()
                         .HasForeignKey("AttachmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Share.Domain.Entities.Story", "Story")
+                    b.HasOne("Share.Domain.Entities.Stories.Story", "Story")
                         .WithMany("StoryImages")
                         .HasForeignKey("StoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -489,15 +421,15 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("Story");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.UserProfileImage", b =>
+            modelBuilder.Entity("Share.Domain.Entities.UserProfileImages.UserProfileImage", b =>
                 {
-                    b.HasOne("Share.Domain.Entities.Attachment", "Attachment")
+                    b.HasOne("Share.Domain.Entities.Attachments.Attachment", "Attachment")
                         .WithMany()
                         .HasForeignKey("AttachmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Share.Domain.Entities.User", "User")
+                    b.HasOne("Share.Domain.Entities.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -508,12 +440,7 @@ namespace Share.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Share.Domain.Entities.Comment", b =>
-                {
-                    b.Navigation("Replies");
-                });
-
-            modelBuilder.Entity("Share.Domain.Entities.Story", b =>
+            modelBuilder.Entity("Share.Domain.Entities.Stories.Story", b =>
                 {
                     b.Navigation("StoryImages");
                 });

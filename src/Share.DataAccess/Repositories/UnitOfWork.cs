@@ -4,7 +4,6 @@ using Share.Domain.Entities.Attachments;
 using Share.Domain.Entities.Comments;
 using Share.Domain.Entities.Follows;
 using Share.Domain.Entities.LikedStories;
-using Share.Domain.Entities.Replies;
 using Share.Domain.Entities.SavedStories;
 using Share.Domain.Entities.Stories;
 using Share.Domain.Entities.StoryImages;
@@ -22,7 +21,6 @@ public class UnitOfWork:IUnitOfWork
                         IRepository<Comment> commentRepository, 
                         IRepository<Follow> followRepository, 
                         IRepository<LikedStory> likedStoryRepository, 
-                        IRepository<Reply> replyRepository, 
                         IRepository<SavedStory> savedStoryRepository,
                         IRepository<Story> storyRepository,
                         IRepository<StoryImage> storyImageRepository, 
@@ -34,7 +32,6 @@ public class UnitOfWork:IUnitOfWork
         CommentRepository = commentRepository;
         FollowRepository = followRepository;
         LikedStoryRepository = likedStoryRepository;
-        ReplyRepository = replyRepository;
         SavedStoryRepository = savedStoryRepository;
         StoryRepository = storyRepository;
         StoryImageRepository = storyImageRepository;
@@ -51,7 +48,6 @@ public class UnitOfWork:IUnitOfWork
     public IRepository<Comment> CommentRepository { get; }
     public IRepository<Follow> FollowRepository { get; }
     public IRepository<LikedStory> LikedStoryRepository { get; }
-    public IRepository<Reply> ReplyRepository { get; }
     public IRepository<SavedStory> SavedStoryRepository { get; }
     public IRepository<Story> StoryRepository { get; }
     public IRepository<StoryImage> StoryImageRepository { get; }

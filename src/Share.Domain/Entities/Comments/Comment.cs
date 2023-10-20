@@ -1,6 +1,4 @@
-using System.Text.Json.Serialization;
 using Share.Domain.Commons;
-using Share.Domain.Entities.Replies;
 using Share.Domain.Entities.Stories;
 using Share.Domain.Entities.Users;
 
@@ -15,7 +13,4 @@ public class Comment:Auditable
 
     public long StoryId { get; set; }
     public Story Story { get; set; }
-
-    [JsonIgnore]
-    public ICollection<Reply> Replies { get; set; }
 }

@@ -3,7 +3,6 @@ using Share.Domain.Entities.Attachments;
 using Share.Domain.Entities.Comments;
 using Share.Domain.Entities.Follows;
 using Share.Domain.Entities.LikedStories;
-using Share.Domain.Entities.Replies;
 using Share.Domain.Entities.SavedStories;
 using Share.Domain.Entities.Stories;
 using Share.Domain.Entities.StoryImages;
@@ -13,7 +12,6 @@ using Share.Service.DTOs.Attachments;
 using Share.Service.DTOs.Comments;
 using Share.Service.DTOs.Follows;
 using Share.Service.DTOs.LikedStories;
-using Share.Service.DTOs.Replies;
 using Share.Service.DTOs.SavedStories;
 using Share.Service.DTOs.Stories;
 using Share.Service.DTOs.StoryImages;
@@ -38,11 +36,6 @@ public class MappingProfile:Profile
         //LikedStory
         CreateMap<LikedStory, LikedStoryCreationDto>().ReverseMap();
         CreateMap<LikedStory, LikedStoryResultDto>().ReverseMap();
-        
-        //Reply
-        CreateMap<Reply, ReplyCreationDto>().ReverseMap();
-        CreateMap<Reply, ReplyUpdateDto>().ReverseMap();
-        CreateMap<Reply, ReplyResultDto>().ReverseMap();
         
         //SavedStory
         CreateMap<SavedStory, SavedStoryCreationDto>().ReverseMap();
