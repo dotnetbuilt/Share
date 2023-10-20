@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Share.DataAccess.Contracts;
-using Share.Domain.Entities;
+using Share.Domain.Entities.Attachments;
 using Share.Service.Exceptions;
 using Share.Service.Extensions;
 using Share.Service.Helpers;

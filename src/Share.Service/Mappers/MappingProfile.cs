@@ -1,5 +1,14 @@
 using AutoMapper;
-using Share.Domain.Entities;
+using Share.Domain.Entities.Attachments;
+using Share.Domain.Entities.Comments;
+using Share.Domain.Entities.Follows;
+using Share.Domain.Entities.LikedStories;
+using Share.Domain.Entities.Replies;
+using Share.Domain.Entities.SavedStories;
+using Share.Domain.Entities.Stories;
+using Share.Domain.Entities.StoryImages;
+using Share.Domain.Entities.UserProfileImages;
+using Share.Domain.Entities.Users;
 using Share.Service.DTOs.Attachments;
 using Share.Service.DTOs.Comments;
 using Share.Service.DTOs.Follows;
@@ -24,6 +33,7 @@ public class MappingProfile:Profile
         
         //Follow
         CreateMap<Follow, FollowCreationDto>().ReverseMap();
+        CreateMap<Follow,FollowResultDto>().ReverseMap();
         
         //LikedStory
         CreateMap<LikedStory, LikedStoryCreationDto>().ReverseMap();

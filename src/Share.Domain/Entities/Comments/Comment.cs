@@ -1,7 +1,10 @@
 using System.Text.Json.Serialization;
 using Share.Domain.Commons;
+using Share.Domain.Entities.Replies;
+using Share.Domain.Entities.Stories;
+using Share.Domain.Entities.Users;
 
-namespace Share.Domain.Entities;
+namespace Share.Domain.Entities.Comments;
 
 public class Comment:Auditable
 {

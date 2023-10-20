@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Share.Api.Extensions;
 using Share.DataAccess.Contexts;

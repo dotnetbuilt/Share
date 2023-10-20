@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Share.Api.Controllers.Commons;
 using Share.Api.Models;
 using Share.Service.DTOs.Stories;
 using Share.Service.Interfaces;
 
-namespace Share.Api.Controllers;
+namespace Share.Api.Controllers.Stories;
 
 public class StoriesController:BaseController
 {

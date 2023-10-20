@@ -1,6 +1,8 @@
 using Share.Domain.Commons;
+using Share.Domain.Entities.Attachments;
+using Share.Domain.Entities.Stories;
 
-namespace Share.Domain.Entities;
+namespace Share.Domain.Entities.StoryImages;
 
 public class StoryImage:BaseEntity
 {

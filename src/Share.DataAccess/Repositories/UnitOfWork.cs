@@ -1,6 +1,15 @@
 using Share.DataAccess.Contexts;
 using Share.DataAccess.Contracts;
-using Share.Domain.Entities;
+using Share.Domain.Entities.Attachments;
+using Share.Domain.Entities.Comments;
+using Share.Domain.Entities.Follows;
+using Share.Domain.Entities.LikedStories;
+using Share.Domain.Entities.Replies;
+using Share.Domain.Entities.SavedStories;
+using Share.Domain.Entities.Stories;
+using Share.Domain.Entities.StoryImages;
+using Share.Domain.Entities.UserProfileImages;
+using Share.Domain.Entities.Users;
 
 namespace Share.DataAccess.Repositories;
 
@@ -8,7 +17,17 @@ public class UnitOfWork:IUnitOfWork
 {
     private readonly AppDbContext _dbContext;
 
-    public UnitOfWork(AppDbContext dbContext, IRepository<Attachment> attachmentRepositroy, IRepository<Comment> commentRepository, IRepository<Follow> followRepository, IRepository<LikedStory> likedStoryRepository, IRepository<Reply> replyRepository, IRepository<SavedStory> savedStoryRepository, IRepository<Story> storyRepository, IRepository<StoryImage> storyImageRepository, IRepository<User> userRepository, IRepository<UserProfileImage> userProfileImageRepository)
+    public UnitOfWork(AppDbContext dbContext, 
+                        IRepository<Attachment> attachmentRepositroy, 
+                        IRepository<Comment> commentRepository, 
+                        IRepository<Follow> followRepository, 
+                        IRepository<LikedStory> likedStoryRepository, 
+                        IRepository<Reply> replyRepository, 
+                        IRepository<SavedStory> savedStoryRepository,
+                        IRepository<Story> storyRepository,
+                        IRepository<StoryImage> storyImageRepository, 
+                        IRepository<User> userRepository,
+                        IRepository<UserProfileImage> userProfileImageRepository)
     {
         _dbContext = dbContext;
         AttachmentRepositroy = attachmentRepositroy;

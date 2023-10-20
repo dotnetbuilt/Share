@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Share.Domain.Commons;
 using Share.Domain.Enums;
 
-namespace Share.Domain.Entities;
+namespace Share.Domain.Entities.Users;
 
 public class User:Auditable
 {

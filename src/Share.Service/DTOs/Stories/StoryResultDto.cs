@@ -1,5 +1,4 @@
-using System.Text.Json.Serialization;
-using Share.Domain.Entities;
+using Share.Domain.Entities.StoryImages;
 using Share.Service.DTOs.Users;
 
 namespace Share.Service.DTOs.Stories;

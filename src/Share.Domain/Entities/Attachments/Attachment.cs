@@ -1,6 +1,6 @@
 using Share.Domain.Commons;
 
-namespace Share.Domain.Entities;
+namespace Share.Domain.Entities.Attachments;
 
 public class Attachment:BaseEntity
 {

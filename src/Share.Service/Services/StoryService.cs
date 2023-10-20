@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Share.DataAccess.Contracts;
-using Share.Domain.Entities;
+using Share.Domain.Entities.Stories;
 using Share.Service.DTOs.Stories;
 using Share.Service.Exceptions;
 using Share.Service.Interfaces;

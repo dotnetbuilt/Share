@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Share.DataAccess.Contracts;
-using Share.Domain.Entities;
+using Share.Domain.Entities.Users;
 using Share.Service.DTOs.Users;
 using Share.Service.Exceptions;
 using Share.Service.Helpers;

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Http;
-using Share.Domain.Entities;
+using Share.Domain.Entities.Attachments;
 
 namespace Share.Service.Interfaces;
 

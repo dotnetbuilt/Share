@@ -1,5 +1,4 @@
 using Share.Service.DTOs.Follows;
-using Share.Service.DTOs.Users;
 
 namespace Share.Service.Interfaces;
 

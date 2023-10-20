@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using Share.Domain.Commons;
+using Share.Domain.Entities.StoryImages;
+using Share.Domain.Entities.Users;
 
-namespace Share.Domain.Entities;
+namespace Share.Domain.Entities.Stories;
 
 public class Story:Auditable
 {

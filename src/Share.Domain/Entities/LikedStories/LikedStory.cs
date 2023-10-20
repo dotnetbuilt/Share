@@ -1,6 +1,8 @@
 using Share.Domain.Commons;
+using Share.Domain.Entities.Stories;
+using Share.Domain.Entities.Users;
 
-namespace Share.Domain.Entities;
+namespace Share.Domain.Entities.LikedStories;
 
 public class LikedStory:BaseEntity
 {

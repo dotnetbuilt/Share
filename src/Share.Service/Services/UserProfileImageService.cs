@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Share.DataAccess.Contracts;
-using Share.Domain.Entities;
+using Share.Domain.Entities.UserProfileImages;
 using Share.Service.DTOs.UserProfileImages;
 using Share.Service.Exceptions;
 using Share.Service.Interfaces;
