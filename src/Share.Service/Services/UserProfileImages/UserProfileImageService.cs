@@ -4,9 +4,10 @@ using Share.DataAccess.Contracts;
 using Share.Domain.Entities.UserProfileImages;
 using Share.Service.DTOs.UserProfileImages;
 using Share.Service.Exceptions;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Attachments;
+using Share.Service.Interfaces.UserProfileImages;
 
-namespace Share.Service.Services;
+namespace Share.Service.Services.UserProfileImages;
 
 public class UserProfileImageService:IUserProfileImageService
 {

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Share.Api.Controllers.Commons;
 using Share.Api.Models;
 using Share.Service.DTOs.Users;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Users;
 
 namespace Share.Api.Controllers.Users;
 

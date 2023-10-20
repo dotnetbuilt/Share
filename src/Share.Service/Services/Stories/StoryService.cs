@@ -4,9 +4,9 @@ using Share.DataAccess.Contracts;
 using Share.Domain.Entities.Stories;
 using Share.Service.DTOs.Stories;
 using Share.Service.Exceptions;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Stories;
 
-namespace Share.Service.Services;
+namespace Share.Service.Services.Stories;
 
 public class StoryService:IStoryService
 {

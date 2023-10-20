@@ -4,9 +4,9 @@ using Share.DataAccess.Contracts;
 using Share.Domain.Entities.Follows;
 using Share.Service.DTOs.Follows;
 using Share.Service.Exceptions;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Follows;
 
-namespace Share.Service.Services;
+namespace Share.Service.Services.Follows;
 
 public class FollowService:IFollowService
 {
@@ -19,7 +19,7 @@ public class FollowService:IFollowService
         _unitOfWork = unitOfWork;
     }
 
-    public async ValueTask<bool> AddAsync(FollowCreationDto dto)
+    public async ValueTask<FollowResultDto> AddAsync(FollowCreationDto dto)
     {
         var existFollow = await _unitOfWork.FollowRepository.SelectAsync(expression: follow =>
             follow.FollowerId == dto.FollowerId &&
@@ -45,7 +45,7 @@ public class FollowService:IFollowService
         await _unitOfWork.FollowRepository.CreateAsync(entity: mappedFollow);
         await _unitOfWork.SaveAsync();
 
-        return true;
+        return _mapper.Map<FollowResultDto>(source: mappedFollow);
     }
 
     public async ValueTask<bool> RemoveAsync(long followId)

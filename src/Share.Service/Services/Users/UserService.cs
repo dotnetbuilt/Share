@@ -5,9 +5,9 @@ using Share.Domain.Entities.Users;
 using Share.Service.DTOs.Users;
 using Share.Service.Exceptions;
 using Share.Service.Helpers;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Users;
 
-namespace Share.Service.Services;
+namespace Share.Service.Services.Users;
 
 public class UserService:IUserService
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Share.Api.Controllers.Commons;
 using Share.Api.Models;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Attachments;
 
 namespace Share.Api.Controllers.Attachments;
 

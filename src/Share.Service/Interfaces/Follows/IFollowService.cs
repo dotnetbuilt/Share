@@ -1,10 +1,10 @@
 using Share.Service.DTOs.Follows;
 
-namespace Share.Service.Interfaces;
+namespace Share.Service.Interfaces.Follows;
 
 public interface IFollowService
 {
-    ValueTask<bool> AddAsync(FollowCreationDto dto);
+    ValueTask<FollowResultDto> AddAsync(FollowCreationDto dto);
     ValueTask<bool> RemoveAsync(long followId);
     ValueTask<IEnumerable<FollowResultDto>> RetrieveAllFollowingsByFollowerIdAsync(long followerId);
     ValueTask<IEnumerable<FollowResultDto>> RetrieveAllFollowersByFollowingIdAsync(long followingId);

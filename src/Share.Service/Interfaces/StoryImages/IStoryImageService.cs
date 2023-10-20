@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Share.Service.DTOs.StoryImages;
 
-namespace Share.Service.Interfaces;
+namespace Share.Service.Interfaces.StoryImages;
 
 public interface IStoryImageService
 {

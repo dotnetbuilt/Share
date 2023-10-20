@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Share.Service.DTOs.UserProfileImages;
 
-namespace Share.Service.Interfaces;
+namespace Share.Service.Interfaces.UserProfileImages;
 
 public interface IUserProfileImageService
 {

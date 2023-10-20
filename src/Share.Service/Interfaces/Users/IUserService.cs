@@ -1,6 +1,6 @@
 using Share.Service.DTOs.Users;
 
-namespace Share.Service.Interfaces;
+namespace Share.Service.Interfaces.Users;
 
 public interface IUserService
 {

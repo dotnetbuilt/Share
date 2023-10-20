@@ -1,6 +1,6 @@
 using Share.Service.DTOs.Stories;
 
-namespace Share.Service.Interfaces;
+namespace Share.Service.Interfaces.Stories;
 
 public interface IStoryService
 {

@@ -4,9 +4,9 @@ using Share.Domain.Entities.Attachments;
 using Share.Service.Exceptions;
 using Share.Service.Extensions;
 using Share.Service.Helpers;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Attachments;
 
-namespace Share.Service.Services;
+namespace Share.Service.Services.Attachments;
 
 public class AttachmentService:IAttachmentService
 {

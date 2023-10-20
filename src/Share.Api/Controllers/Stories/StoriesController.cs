@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Share.Api.Controllers.Commons;
 using Share.Api.Models;
 using Share.Service.DTOs.Stories;
-using Share.Service.Interfaces;
+using Share.Service.Interfaces.Stories;
 
 namespace Share.Api.Controllers.Stories;
 
