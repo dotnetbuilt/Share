@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Share.DataAccess.Contracts;
 using Share.Domain.Entities;
 using Share.Service.DTOs.UserProfileImages;
@@ -20,19 +21,27 @@ public class UserProfileImageService:IUserProfileImageService
         _attachmentService = attachmentService;
     }
 
-    public async ValueTask<UserProfileImageResultDto> AddAsync(UserProfileImageCreationDto dto)
+    public async ValueTask<UserProfileImageResultDto> AddAsync(long userId,IFormFile image)
     {
+        var existUser = 
+            await _unitOfWork.UserRepository.SelectAsync(expression: user => user.Id == userId) ??
+                        throw new NotFoundException(message: "User is not found");
+        
         var existImage = await _unitOfWork.UserProfileImageRepository
-            .SelectAsync(expression: image => image.UserId == dto.UserId);
+            .SelectAsync(expression: image => image.UserId == userId);
 
         if (existImage != null)
             throw new AlreadyExistsException(message: "Profile has already image");
 
-        var profileImage = await _attachmentService.UploadImageAsync(dto.ProfileImage);
+        var profileImage = await _attachmentService.UploadImageAsync(image);
 
-        var mappedImage = _mapper.Map<UserProfileImage>(source: dto);
-        mappedImage.AttachmentId = profileImage.Id;
-        mappedImage.Attachment = profileImage;
+        var mappedImage = new UserProfileImage()
+        {
+            UserId = userId,
+            User = existUser,
+            AttachmentId = profileImage.Id,
+            Attachment = profileImage
+        };
 
         await _unitOfWork.UserProfileImageRepository.CreateAsync(entity:mappedImage);
         await _unitOfWork.SaveAsync();
@@ -43,10 +52,12 @@ public class UserProfileImageService:IUserProfileImageService
     public async ValueTask<UserProfileImageResultDto> RetrieveByIdAsync(long imageId)
     {
         var existImage =
-            await _unitOfWork.UserProfileImageRepository.SelectAsync(expression: image => image.Id == imageId)
+            await _unitOfWork.UserProfileImageRepository.SelectAsync(expression: image => image.Id == imageId,
+                includes:new[]{"User","Attachment"})
             ?? throw new NotFoundException(message: "UserProfileImage is not found");
 
-        return _mapper.Map<UserProfileImageResultDto>(source: existImage);
+        var result = _mapper.Map<UserProfileImageResultDto>(source: existImage);
+        return result;
     }
 
     public async ValueTask<bool> RemoveAsync(long imageId)
@@ -55,6 +66,9 @@ public class UserProfileImageService:IUserProfileImageService
             await _unitOfWork.UserProfileImageRepository.SelectAsync(expression: image => image.Id == imageId)
             ?? throw new NotFoundException(message: "UserProfileImage is not found");
 
+        _unitOfWork.UserProfileImageRepository.Delete(entity:existImage);
+        await _unitOfWork.SaveAsync();
+        
         return true;
     }
 }

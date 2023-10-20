@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Share.DataAccess.Contracts;
 using Share.Domain.Entities;
+using Share.Service.DTOs.Attachments;
 using Share.Service.Exceptions;
 using Share.Service.Extensions;
 using Share.Service.Helpers;
@@ -12,10 +13,12 @@ namespace Share.Service.Services;
 public class AttachmentService:IAttachmentService
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
      
-    public AttachmentService(IUnitOfWork unitOfWork)
+    public AttachmentService(IUnitOfWork unitOfWork,IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
     public async ValueTask<Attachment> UploadImageAsync(IFormFile image)
@@ -55,5 +58,14 @@ public class AttachmentService:IAttachmentService
         await _unitOfWork.SaveAsync();
 
         return true;
+    }
+
+    public async ValueTask<Attachment> RetrieveByIdAsync(long imageId)
+    {
+        var existImage =
+            await _unitOfWork.AttachmentRepositroy.SelectAsync(expression: attachment => attachment.Id == imageId)
+            ?? throw new NotFoundException(message: "Attachment is not found");
+
+        return existImage;
     }
 }

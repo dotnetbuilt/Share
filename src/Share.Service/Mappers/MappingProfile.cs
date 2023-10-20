@@ -1,5 +1,6 @@
 using AutoMapper;
 using Share.Domain.Entities;
+using Share.Service.DTOs.Attachments;
 using Share.Service.DTOs.Comments;
 using Share.Service.DTOs.Follows;
 using Share.Service.DTOs.LikedStories;
@@ -50,7 +51,9 @@ public class MappingProfile:Profile
         CreateMap<UserResultDto, User>().ReverseMap();
         
         //UserProfileImage
-        CreateMap<UserProfileImage, UserProfileImageCreationDto>().ReverseMap();
         CreateMap<UserProfileImage, UserProfileImageResultDto>().ReverseMap();
+        
+        //Attachment
+        CreateMap<Attachment, AttachmentResultDto>().ReverseMap();
     }
 }

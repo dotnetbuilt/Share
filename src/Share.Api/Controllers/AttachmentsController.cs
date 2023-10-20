@@ -30,4 +30,13 @@ public class AttachmentsController : BaseController
             Message = "Success",
             Data = await _service.RemoveImageAsync(imageId)
         });
+
+    [HttpGet("get-by-id")]
+    public async ValueTask<IActionResult> GetByIdAsync(long imageId)
+        => Ok(new Response()
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.RetrieveByIdAsync(imageId)
+        });
 }
