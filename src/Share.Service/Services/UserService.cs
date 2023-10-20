@@ -5,6 +5,7 @@ using Share.Domain.Entities;
 using Share.Service.DTOs.Users;
 using Share.Service.Exceptions;
 using Share.Service.Extensions;
+using Share.Service.Helpers;
 using Share.Service.Interfaces;
 
 namespace Share.Service.Services;
@@ -29,7 +30,7 @@ public class UserService:IUserService
             throw new AlreadyExistsException(message: "Email is already taken");
 
         var mappedUser = _mapper.Map<User>(source: dto);
-        mappedUser.Password.Hash();
+        mappedUser.Password = PasswordHasher.Hash(mappedUser.Password);
 
         await _unitOfWork.UserRepository.CreateAsync(entity: mappedUser);
         await _unitOfWork.SaveAsync();

@@ -13,6 +13,7 @@ public static class ServiceCollection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<IAttachmentService, AttachmentService>();
+        services.AddScoped<IUserService, UserService>();
 
         services.AddAutoMapper(typeof(MappingProfile));
     }
