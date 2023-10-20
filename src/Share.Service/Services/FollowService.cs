@@ -37,6 +37,10 @@ public class FollowService:IFollowService
             throw new NotFoundException(message: "Following(User) is not found");
 
         var mappedFollow = _mapper.Map<Follow>(source: dto);
+        mappedFollow.FollowerId = existFollower.Id;
+        mappedFollow.Follower = existFollower;
+        mappedFollow.FollowingId = existFollowing.Id;
+        mappedFollow.Following = existFollowing;
 
         await _unitOfWork.FollowRepository.CreateAsync(entity: mappedFollow);
         await _unitOfWork.SaveAsync();
