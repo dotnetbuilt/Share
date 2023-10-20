@@ -45,6 +45,7 @@ public class MappingProfile:Profile
         
         //SavedStory
         CreateMap<SavedStory, SavedStoryCreationDto>().ReverseMap();
+        CreateMap<SavedStory, SavedStoryResultDto>().ReverseMap();
         
         //Story
         CreateMap<Story, StoryCreationDto>().ReverseMap();

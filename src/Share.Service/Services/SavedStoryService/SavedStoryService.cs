@@ -59,7 +59,7 @@ public class SavedStoryService:ISavedStoryService
         return true;
     }
 
-    public async ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveUsersByStoryIdAsync(long storyId)
+    public async ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveAllByStoryIdAsync(long storyId)
     {
         var savedStories = await _unitOfWork.SavedStoryRepository
             .SelectAll(expression: savedStory => savedStory.StoryId == storyId,
@@ -69,7 +69,7 @@ public class SavedStoryService:ISavedStoryService
         return _mapper.Map<IEnumerable<SavedStoryResultDto>>(source: savedStories);
     }
 
-    public async ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveStoriesByUserIdAsync(long userId)
+    public async ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveAllByUserIdAsync(long userId)
     {
         var savedStories = await _unitOfWork.SavedStoryRepository
             .SelectAll(expression: savedStory => savedStory.UserId == userId,

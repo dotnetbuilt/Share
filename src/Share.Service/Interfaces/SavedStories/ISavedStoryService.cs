@@ -8,7 +8,7 @@ public interface ISavedStoryService
 {
     ValueTask<SavedStoryResultDto> AddAsync(SavedStoryCreationDto dto);
     ValueTask<bool> RemoveAsync(long savedStoryId);
-    ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveUsersByStoryIdAsync(long storyId);
-    ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveStoriesByUserIdAsync(long userId);
+    ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveAllByStoryIdAsync(long storyId);
+    ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveAllByUserIdAsync(long userId);
     ValueTask<long> RetrieveNumberOfUsersByStoryIdAsync(long storyId);
 }
