@@ -28,14 +28,14 @@ public class UserProfileImageService:IUserProfileImageService
                         throw new NotFoundException(message: "User is not found");
         
         var existImage = await _unitOfWork.UserProfileImageRepository
-            .SelectAsync(expression: image => image.UserId == userId);
+            .SelectAsync(expression: userImage => userImage.UserId == userId);
 
         if (existImage != null)
             throw new AlreadyExistsException(message: "Profile has already image");
 
         var profileImage = await _attachmentService.UploadImageAsync(image);
 
-        var mappedImage = new UserProfileImage()
+        var mappedImage = new UserProfileImage
         {
             UserId = userId,
             User = existUser,

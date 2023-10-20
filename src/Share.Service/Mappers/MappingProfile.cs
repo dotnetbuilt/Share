@@ -42,7 +42,6 @@ public class MappingProfile:Profile
         CreateMap<Story, StoryResultDto>().ReverseMap();
         
         //StoryImage
-        CreateMap<StoryImage, StoryImageCreationDto>().ReverseMap();
         CreateMap<StoryImage, StoryImageResultDto>().ReverseMap();
         
         //User

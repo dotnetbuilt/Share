@@ -1,4 +1,3 @@
-using Share.Domain.Entities;
 using Share.Service.DTOs.Replies;
 using Share.Service.DTOs.Stories;
 using Share.Service.DTOs.Users;

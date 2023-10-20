@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Http;
 using Share.Domain.Entities;
-using Share.Service.DTOs.Attachments;
 
 namespace Share.Service.Interfaces;
 

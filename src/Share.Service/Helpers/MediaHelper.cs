@@ -1,12 +1,12 @@
 namespace Share.Service.Helpers;
 
-public class MediaHelper
+public static class MediaHelper
 {
     public static string MakeImageName(string fileName)
     {
-        FileInfo fileInfo = new FileInfo(fileName);
-        string extension = fileInfo.Extension;
-        string name = "_IMG" + Guid.NewGuid() + extension;
+        var fileInfo = new FileInfo(fileName);
+        var extension = fileInfo.Extension;
+        var name = "_IMG" + Guid.NewGuid() + extension;
         return name;
     }
 }

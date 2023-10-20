@@ -16,7 +16,7 @@ public class StoriesController:BaseController
 
     [HttpPost("create")]
     public async ValueTask<IActionResult> CreateAsync(StoryCreationDto dto)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -25,7 +25,7 @@ public class StoriesController:BaseController
 
     [HttpPut("update")]
     public async ValueTask<IActionResult> UpdateAsync(StoryUpdateDto dto)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -34,7 +34,7 @@ public class StoriesController:BaseController
 
     [HttpDelete("delete")]
     public async ValueTask<IActionResult> DeleteAsync(long storyId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -43,7 +43,7 @@ public class StoriesController:BaseController
 
     [HttpGet("get-by-id")]
     public async ValueTask<IActionResult> GetByIdAsync(long storyId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -52,7 +52,7 @@ public class StoriesController:BaseController
 
     [HttpGet("get-all-by-user-id")]
     public async ValueTask<IActionResult> GetAllByUserIdAsync(long userId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -61,7 +61,7 @@ public class StoriesController:BaseController
 
     [HttpGet("get-all")]
     public async ValueTask<IActionResult> GetAllAsync()
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",

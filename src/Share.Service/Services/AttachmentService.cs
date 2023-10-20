@@ -1,8 +1,6 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Share.DataAccess.Contracts;
 using Share.Domain.Entities;
-using Share.Service.DTOs.Attachments;
 using Share.Service.Exceptions;
 using Share.Service.Extensions;
 using Share.Service.Helpers;
@@ -13,12 +11,10 @@ namespace Share.Service.Services;
 public class AttachmentService:IAttachmentService
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
      
-    public AttachmentService(IUnitOfWork unitOfWork,IMapper mapper)
+    public AttachmentService(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
     }
 
     public async ValueTask<Attachment> UploadImageAsync(IFormFile image)
@@ -34,7 +30,7 @@ public class AttachmentService:IAttachmentService
         var fileStream = new FileStream(filePath, FileMode.OpenOrCreate);
         await fileStream.WriteAsync(image.ToByte());
 
-        var createdAttachment = new Attachment()
+        var createdAttachment = new Attachment
         {
             FileName = fileName,
             FilePath = filePath

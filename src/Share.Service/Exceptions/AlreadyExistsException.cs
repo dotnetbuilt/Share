@@ -7,5 +7,5 @@ public class AlreadyExistsException:Exception
         StatusCode = 403;
     }
 
-    public int StatusCode { get; set; }
+    public int StatusCode { get;set; }
 }

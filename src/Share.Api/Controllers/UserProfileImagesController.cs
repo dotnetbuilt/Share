@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Share.Api.Models;
-using Share.Service.DTOs.UserProfileImages;
 using Share.Service.Interfaces;
 
 namespace Share.Api.Controllers;
@@ -16,7 +15,7 @@ public class UserProfileImagesController:BaseController
 
     [HttpPost("upload")]
     public async ValueTask<IActionResult> UploadAsync(long userId,IFormFile image)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -25,7 +24,7 @@ public class UserProfileImagesController:BaseController
 
     [HttpGet("get-by-id")]
     public async ValueTask<IActionResult> GetByIdAsync(long imageId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -34,7 +33,7 @@ public class UserProfileImagesController:BaseController
 
     [HttpDelete("delete")]
     public async ValueTask<IActionResult> DeleteAsync(long imageId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",

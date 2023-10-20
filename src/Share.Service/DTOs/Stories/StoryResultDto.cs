@@ -12,5 +12,4 @@ public class StoryResultDto
     public int Likes { get; set; }
     public int Comments { get; set; }
     public int Saved { get; set; }
-    public ICollection<StoryImageResultDto> StoryImages { get; set; }
 }

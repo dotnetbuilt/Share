@@ -16,7 +16,7 @@ public class UsersController:BaseController
 
     [HttpPost("register")]
     public async ValueTask<IActionResult> RegisterAsync(UserCreationDto dto)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -25,7 +25,7 @@ public class UsersController:BaseController
 
     [HttpPut("update")]
     public async ValueTask<IActionResult> UpdateAsync(UserUpdateDto dto)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -34,7 +34,7 @@ public class UsersController:BaseController
 
     [HttpDelete("delete")]
     public async ValueTask<IActionResult> DeleteAsync(long userId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -43,7 +43,7 @@ public class UsersController:BaseController
 
     [HttpGet("get-by-id")]
     public async ValueTask<IActionResult> GetByIdAsync(long userId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -52,7 +52,7 @@ public class UsersController:BaseController
 
     [HttpGet("get-all")]
     public async ValueTask<IActionResult> GetAllAsync()
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -61,7 +61,7 @@ public class UsersController:BaseController
 
     [HttpGet("get-number-of-users")]
     public async ValueTask<IActionResult> GetNumberOfUsersAsync()
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",

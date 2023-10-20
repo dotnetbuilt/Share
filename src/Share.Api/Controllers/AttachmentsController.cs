@@ -15,7 +15,7 @@ public class AttachmentsController : BaseController
 
     [HttpPost("create")]
     public async ValueTask<IActionResult> CreateAsync(IFormFile image)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -24,7 +24,7 @@ public class AttachmentsController : BaseController
 
     [HttpDelete("delete")]
     public async ValueTask<IActionResult> DeleteAsync(long imageId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -33,7 +33,7 @@ public class AttachmentsController : BaseController
 
     [HttpGet("get-by-id")]
     public async ValueTask<IActionResult> GetByIdAsync(long imageId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",

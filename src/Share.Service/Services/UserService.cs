@@ -4,7 +4,6 @@ using Share.DataAccess.Contracts;
 using Share.Domain.Entities;
 using Share.Service.DTOs.Users;
 using Share.Service.Exceptions;
-using Share.Service.Extensions;
 using Share.Service.Helpers;
 using Share.Service.Interfaces;
 

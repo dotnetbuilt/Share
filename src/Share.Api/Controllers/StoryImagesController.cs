@@ -15,7 +15,7 @@ public class StoryImagesController:BaseController
 
     [HttpPost("create")]
     public async ValueTask<IActionResult> CreateAsync(long storyId, IFormFile image)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -24,7 +24,7 @@ public class StoryImagesController:BaseController
 
     [HttpGet("get-by-id")]
     public async ValueTask<IActionResult> GetByIdAsync(long storyImageId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
@@ -33,7 +33,7 @@ public class StoryImagesController:BaseController
 
     [HttpDelete("delete")]
     public async ValueTask<IActionResult> DeleteAsync(long storyImageId)
-        => Ok(new Response()
+        => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",

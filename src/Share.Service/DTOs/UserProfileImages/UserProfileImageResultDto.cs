@@ -1,4 +1,3 @@
-using Share.Domain.Entities;
 using Share.Service.DTOs.Attachments;
 using Share.Service.DTOs.Users;
 
