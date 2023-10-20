@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Share.Domain.Commons;
 
 namespace Share.Domain.Entities;
@@ -15,4 +16,7 @@ public class Story:Auditable
 
     public long UserId { get; set; }
     public User User { get; set; }
+
+    [JsonIgnore]
+    public ICollection<StoryImage> StoryImages { get; set; }
 }

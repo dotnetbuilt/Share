@@ -1,4 +1,5 @@
-using Share.Service.DTOs.StoryImages;
+using System.Text.Json.Serialization;
+using Share.Domain.Entities;
 using Share.Service.DTOs.Users;
 
 namespace Share.Service.DTOs.Stories;
@@ -12,4 +13,5 @@ public class StoryResultDto
     public int Likes { get; set; }
     public int Comments { get; set; }
     public int Saved { get; set; }
+    public ICollection<StoryImage> StoryImages { get; set; }
 }
