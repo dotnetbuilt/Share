@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Share.DataAccess.Contracts;
 using Share.Domain.Entities;
 using Share.Service.DTOs.Follows;
-using Share.Service.DTOs.Users;
 using Share.Service.Exceptions;
 using Share.Service.Interfaces;
 
@@ -57,27 +56,33 @@ public class FollowService:IFollowService
         return true;
     }
 
-    public async ValueTask<IEnumerable<UserResultDto>> RetrieveAllFollowingsByFollowerIdAsync(long followerId)
+    public async ValueTask<IEnumerable<FollowResultDto>> RetrieveAllFollowingsByFollowerIdAsync(long followerId)
     {
         var followings = await _unitOfWork.FollowRepository
-            .SelectAll(expression: follow => follow.FollowerId == followerId, new[] { "Following" , "Follower"})
+            .SelectAll(expression: follow => follow.FollowerId == followerId, 
+                        includes:new[] { "Following" , "Follower"})
             .ToListAsync();
-        
-        return _mapper.Map<IEnumerable<Fol>>()
+
+        return _mapper.Map<IEnumerable<FollowResultDto>>(source: followings);
     }
 
-    public async ValueTask<IEnumerable<UserResultDto>> RetrieveAllFollowersByFollowingIdAsync(long followingId)
+    public async ValueTask<IEnumerable<FollowResultDto>> RetrieveAllFollowersByFollowingIdAsync(long followingId)
     {
-        throw new NotImplementedException();
+        var followers = await _unitOfWork.FollowRepository
+            .SelectAll(expression: follow => follow.FollowingId == followingId, 
+                includes:new[] { "Following" , "Follower"})
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<FollowResultDto>>(source: followers);
     }
 
     public async ValueTask<long> RetrieveNumberOfFollowersAsync(long followingId)
-    {
-        throw new NotImplementedException();
-    }
+        => await _unitOfWork.FollowRepository
+            .SelectAll(expression: follow => follow.FollowingId == followingId)
+            .LongCountAsync();
 
     public async ValueTask<long> RetrieveNumberOfFollowingsAsync(long followerId)
-    {
-        throw new NotImplementedException();
-    }
+        => await _unitOfWork.FollowRepository
+            .SelectAll(expression: follow => follow.FollowerId == followerId)
+            .LongCountAsync();
 }
