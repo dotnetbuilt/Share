@@ -79,4 +79,23 @@ public class UserService:IUserService
 
     public async ValueTask<long> RetrieveNumberOfUsers()
         => await _unitOfWork.UserRepository.SelectAll().LongCountAsync();
+
+    public async ValueTask<bool> ChangePassword(string email, string currentPassword,string newPassword)
+    {
+        var user =
+            await _unitOfWork.UserRepository.SelectAsync(expression: user => user.Email == email) ??
+            throw new NotFoundException(message: "User is not found");
+
+        var isPasswordTrue = PasswordHasher.Verify(currentPassword, newPassword);
+
+        if (!isPasswordTrue)
+            throw new CustomException(message: "Password is incorrect", statusCode: 404);
+
+        user.Password = PasswordHasher.Hash(newPassword);
+        
+        _unitOfWork.UserRepository.Update(user);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
 }

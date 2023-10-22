@@ -68,4 +68,13 @@ public class UsersController:BaseController
             Message = "Success",
             Data = await _service.RetrieveNumberOfUsers()
         });
+
+    [HttpPatch("change-password")]
+    public async ValueTask<IActionResult> ChangePassword(string email, string currentPassword, string newPassword)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.ChangePassword(email, currentPassword, newPassword)
+        });
 }
