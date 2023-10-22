@@ -29,7 +29,7 @@ public class AttachmentsController : BaseController
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await _service.RemoveImageAsync(imageId)
+            Data = await _service.DestroyAsync(imageId)
         });
 
     [HttpGet("get-by-id")]

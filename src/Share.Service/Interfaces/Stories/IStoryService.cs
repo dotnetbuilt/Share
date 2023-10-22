@@ -10,4 +10,5 @@ public interface IStoryService
     ValueTask<StoryResultDto> RetrieveByIdAsync(long storyId);
     ValueTask<IEnumerable<StoryResultDto>> RetrieveAllByUserIdAsync(long userId);
     ValueTask<IEnumerable<StoryResultDto>> RetrieveAllAsync();
+    ValueTask<bool> DestroyAsync(long storyId);
 }

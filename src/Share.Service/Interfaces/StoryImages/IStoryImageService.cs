@@ -8,4 +8,5 @@ public interface IStoryImageService
     ValueTask<StoryImageResultDto> AddAsync(long storyId,IFormFile image);
     ValueTask<StoryImageResultDto> RetrieveByIdAsync(long storyImageId);
     ValueTask<bool> RemoveAsync(long storyImageId);
+    ValueTask<bool> DestroyAsync(long storyImageId);
 }

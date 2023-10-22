@@ -72,4 +72,15 @@ public class UserProfileImageService:IUserProfileImageService
         
         return true;
     }
+
+    public async ValueTask<bool> DestroyAsync(long profileImageId)
+    {
+        var profileImage = await _unitOfWork.UserProfileImageRepository.SelectAsync(expression: profileImage => profileImage.Id == profileImageId) ??
+                   throw new NotFoundException(message: "User is not found");
+        
+        _unitOfWork.UserProfileImageRepository.Destroy(entity:profileImage);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
 }

@@ -68,4 +68,13 @@ public class FollowsController:BaseController
             Message = "Success",
             Data = await _service.RetrieveNumberOfFollowersAsync(followingId)
         });
+
+    [HttpDelete("destroy")]
+    public async ValueTask<IActionResult> DestroyAsync(long followId)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.DestroyAsync(followId)
+        });
 }

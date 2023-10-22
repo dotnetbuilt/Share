@@ -9,4 +9,5 @@ public interface ILikedStoryService
     ValueTask<IEnumerable<LikedStoryResultDto>> RetrieveAllByUserIdAsync(long userId);
     ValueTask<IEnumerable<LikedStoryResultDto>> RetrieveAllByStoryIdAsync(long storyId);
     ValueTask<long> RetrieveNumberOfLikesByStoryIdAsync(long storyId);
+    ValueTask<bool> DestroyAsync(long likedStoryId);
 }

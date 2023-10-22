@@ -11,4 +11,5 @@ public interface IUserService
     ValueTask<IEnumerable<UserResultDto>> RetrieveAllAsync();
     ValueTask<long> RetrieveNumberOfUsers();
     ValueTask<bool> ChangePassword(string email, string currentPassword,string newPassword);
+    ValueTask<bool> DestroyAsync(long userId);
 }

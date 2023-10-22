@@ -89,4 +89,16 @@ public class FollowService:IFollowService
         => await _unitOfWork.FollowRepository
             .SelectAll(expression: follow => follow.FollowerId == followerId)
             .LongCountAsync();
+
+    public async ValueTask<bool> DestroyAsync(long followId)
+    {
+        var follow =
+            await _unitOfWork.FollowRepository.SelectAsync(expression: follow => follow.Id == followId) ??
+            throw new NotFoundException(message: "Follow is not found");
+        
+        _unitOfWork.FollowRepository.Destroy(entity:follow);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
 }

@@ -59,10 +59,22 @@ public class StoryImageService:IStoryImageService
     {
         var existImage =
             await _unitOfWork.StoryImageRepository.
-                SelectAsync(expression: image => image.Id == storyImageId,includes:new[]{"Story.User","Attachment"}) ??
+                SelectAsync(expression: image => image.Id == storyImageId) ??
             throw new NotFoundException(message: "Story image is not found");
         
         _unitOfWork.StoryImageRepository.Delete(entity:existImage);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
+
+    public async ValueTask<bool> DestroyAsync(long storyImageId)
+    {
+        var storyImage = await _unitOfWork.StoryImageRepository
+                             .SelectAsync(expression: storyImage => storyImage.Id == storyImageId) ??
+                         throw new NotFoundException(message: "Story image is not found");
+        
+        _unitOfWork.StoryImageRepository.Destroy(entity:storyImage);
         await _unitOfWork.SaveAsync();
 
         return true;

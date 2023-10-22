@@ -59,4 +59,13 @@ public class LikedStoriesController:BaseController
             Message = "Success",
             Data = await _service.RetrieveNumberOfLikesByStoryIdAsync(storyId)
         });
+
+    [HttpDelete("destroy")]
+    public async ValueTask<IActionResult> DestroyAsync(long likedStoryId)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.DestroyAsync(likedStoryId)
+        });
 }

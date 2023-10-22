@@ -42,7 +42,7 @@ public class AttachmentService:IAttachmentService
         return createdAttachment;
     }
 
-    public async ValueTask<bool> RemoveImageAsync(long imageId)
+    public async ValueTask<bool> DestroyAsync(long imageId)
     {
         var existImage =
             await _unitOfWork.AttachmentRepositroy.SelectAsync(expression: image => image.Id == imageId);
@@ -50,7 +50,7 @@ public class AttachmentService:IAttachmentService
         if (existImage == null)
             throw new NotFoundException(message: "Attachment is not found");
         
-        _unitOfWork.AttachmentRepositroy.Delete(entity:existImage);
+        _unitOfWork.AttachmentRepositroy.Destroy(entity:existImage);
         await _unitOfWork.SaveAsync();
 
         return true;

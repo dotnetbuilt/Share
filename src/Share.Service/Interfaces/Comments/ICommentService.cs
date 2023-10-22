@@ -8,4 +8,5 @@ public interface ICommentService
     ValueTask<CommentResultDto> ModifyAsync(CommentUpdateDto dto);
     ValueTask<IEnumerable<CommentResultDto>> RetrieveAllByStoryIdAsync(long storyId);
     ValueTask<IEnumerable<CommentResultDto>> RetrieveAllByUserIdAsync(long userId);
+    ValueTask<bool> DestroyAsync(long commentId);
 }

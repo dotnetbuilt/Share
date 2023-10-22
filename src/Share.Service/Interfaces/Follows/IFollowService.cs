@@ -10,4 +10,5 @@ public interface IFollowService
     ValueTask<IEnumerable<FollowResultDto>> RetrieveAllFollowersByFollowingIdAsync(long followingId);
     ValueTask<long> RetrieveNumberOfFollowersAsync(long followingId);
     ValueTask<long> RetrieveNumberOfFollowingsAsync(long followerId);
+    ValueTask<bool> DestroyAsync(long followId);
 }

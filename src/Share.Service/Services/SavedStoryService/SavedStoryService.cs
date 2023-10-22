@@ -83,4 +83,16 @@ public class SavedStoryService:ISavedStoryService
         => await _unitOfWork.SavedStoryRepository
             .SelectAll(expression: savedStory => savedStory.StoryId == storyId)
             .LongCountAsync();
+
+    public async ValueTask<bool> DestroyAsync(long savedStoryId)
+    {
+        var savedStory = await _unitOfWork.SavedStoryRepository
+                             .SelectAsync(expression: savedStory => savedStory.Id == savedStoryId) ??
+                         throw new NotFoundException(message: "Saved story is not found");
+        
+        _unitOfWork.SavedStoryRepository.Destroy(entity:savedStory);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
 }

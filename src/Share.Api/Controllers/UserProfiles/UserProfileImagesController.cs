@@ -40,4 +40,13 @@ public class UserProfileImagesController:BaseController
             Message = "Success",
             Data = await _service.RemoveAsync(imageId)
         });
+
+    [HttpDelete("destroy")]
+    public async ValueTask<IActionResult> DestroyAsync(long profileImageId)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.DestroyAsync(profileImageId)
+        });
 }

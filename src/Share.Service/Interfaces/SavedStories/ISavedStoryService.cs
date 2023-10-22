@@ -11,4 +11,5 @@ public interface ISavedStoryService
     ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveAllByStoryIdAsync(long storyId);
     ValueTask<IEnumerable<SavedStoryResultDto>> RetrieveAllByUserIdAsync(long userId);
     ValueTask<long> RetrieveNumberOfUsersByStoryIdAsync(long storyId);
+    ValueTask<bool> DestroyAsync(long savedStoryId);
 }

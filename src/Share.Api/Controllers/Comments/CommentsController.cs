@@ -50,4 +50,13 @@ public class CommentsController:BaseController
             Message = "Success",
             Data = await _service.RetrieveAllByUserIdAsync(userId)
         });
+
+    [HttpDelete("destroy")]
+    public async ValueTask<IActionResult> DestroyAsync(long commentId)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.DestroyAsync(commentId)
+        });
 }

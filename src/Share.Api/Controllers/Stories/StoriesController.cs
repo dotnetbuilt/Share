@@ -68,4 +68,13 @@ public class StoriesController:BaseController
             Message = "Success",
             Data = await _service.RetrieveAllAsync()
         });
+
+    [HttpDelete("destroy")]
+    public async ValueTask<IActionResult> DestroyAsync(long storyId)
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Success",
+            Data = await _service.DestroyAsync(storyId)
+        });
 }

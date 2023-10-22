@@ -98,4 +98,16 @@ public class UserService:IUserService
 
         return true;
     }
+
+    public async ValueTask<bool> DestroyAsync(long userId)
+    {
+        var user =
+            await _unitOfWork.UserRepository.SelectAsync(expression: user => user.Id == userId) ??
+            throw new NotFoundException(message: "User is not found");
+        
+        _unitOfWork.UserRepository.Destroy(entity:user);
+        await _unitOfWork.SaveAsync();
+
+        return true;
+    }
 }
