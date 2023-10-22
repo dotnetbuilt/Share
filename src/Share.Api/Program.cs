@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Share.Api.Extensions;
+using Share.Api.Middlewares;
 using Share.DataAccess.Contexts;
 using Share.Service.Helpers;
 
@@ -33,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
