@@ -59,13 +59,4 @@ public class SavedStoriesController:BaseController
             Message = "Success",
             Data = await _service.RetrieveNumberOfUsersByStoryIdAsync(storyId)
         });
-
-    [HttpDelete("destroy")]
-    public async ValueTask<IActionResult> DestroyAsync(long savedStoryId)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await _service.DestroyAsync(savedStoryId)
-        });
 }

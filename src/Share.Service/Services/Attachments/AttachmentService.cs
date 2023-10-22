@@ -42,20 +42,6 @@ public class AttachmentService:IAttachmentService
         return createdAttachment;
     }
 
-    public async ValueTask<bool> DestroyAsync(long imageId)
-    {
-        var existImage =
-            await _unitOfWork.AttachmentRepositroy.SelectAsync(expression: image => image.Id == imageId);
-
-        if (existImage == null)
-            throw new NotFoundException(message: "Attachment is not found");
-        
-        _unitOfWork.AttachmentRepositroy.Destroy(entity:existImage);
-        await _unitOfWork.SaveAsync();
-
-        return true;
-    }
-
     public async ValueTask<Attachment> RetrieveByIdAsync(long imageId)
     {
         var existImage =

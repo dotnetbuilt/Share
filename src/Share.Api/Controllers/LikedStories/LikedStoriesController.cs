@@ -6,7 +6,7 @@ using Share.Service.Interfaces.LikedStories;
 
 namespace Share.Api.Controllers.LikedStories;
 
-public class LikedStoriesController:BaseController
+public class LikedStoriesController : BaseController
 {
     private readonly ILikedStoryService _service;
 
@@ -58,14 +58,5 @@ public class LikedStoriesController:BaseController
             StatusCode = 200,
             Message = "Success",
             Data = await _service.RetrieveNumberOfLikesByStoryIdAsync(storyId)
-        });
-
-    [HttpDelete("destroy")]
-    public async ValueTask<IActionResult> DestroyAsync(long likedStoryId)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await _service.DestroyAsync(likedStoryId)
         });
 }

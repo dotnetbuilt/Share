@@ -91,15 +91,4 @@ public class StoryService:IStoryService
 
         return _mapper.Map<IEnumerable<StoryResultDto>>(source: stories);
     }
-
-    public async ValueTask<bool> DestroyAsync(long storyId)
-    {
-        var story = await _unitOfWork.StoryRepository.SelectAsync(expression: story => story.Id == storyId) ??
-                    throw new NotFoundException(message: "Story is not found");
-        
-        _unitOfWork.StoryRepository.Destroy(entity:story);
-        await _unitOfWork.SaveAsync();
-
-        return true;
-    }
 }

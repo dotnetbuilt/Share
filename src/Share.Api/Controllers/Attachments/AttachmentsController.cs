@@ -23,15 +23,6 @@ public class AttachmentsController : BaseController
             Data = await _service.UploadImageAsync(image)
         });
 
-    [HttpDelete("delete")]
-    public async ValueTask<IActionResult> DeleteAsync(long imageId)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await _service.DestroyAsync(imageId)
-        });
-
     [HttpGet("get-by-id")]
     public async ValueTask<IActionResult> GetByIdAsync(long imageId)
         => Ok(new Response

@@ -76,16 +76,4 @@ public class CommentService:ICommentService
 
         return _mapper.Map<IEnumerable<CommentResultDto>>(source: comments);
     }
-
-    public async ValueTask<bool> DestroyAsync(long commentId)
-    {
-        var comment =
-            await _unitOfWork.CommentRepository.SelectAsync(expression: comment => comment.Id == commentId) ??
-            throw new NotFoundException(message: "Comment is not found");
-        
-        _unitOfWork.CommentRepository.Destroy(entity:comment);
-        await _unitOfWork.SaveAsync();
-
-        return true;
-    }
 }

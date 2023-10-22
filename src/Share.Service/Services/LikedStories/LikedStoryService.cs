@@ -84,16 +84,4 @@ public class LikedStoryService:ILikedStoryService
         => await _unitOfWork.LikedStoryRepository
             .SelectAll(expression: likedStory => likedStory.StoryId == storyId)
             .LongCountAsync();
-
-    public async ValueTask<bool> DestroyAsync(long likedStoryId)
-    {
-        var likedStory = await _unitOfWork.LikedStoryRepository
-                             .SelectAsync(expression: likedStory => likedStory.Id == likedStoryId) ??
-                         throw new NotFoundException(message: "Liked Story is not found");
-        
-        _unitOfWork.LikedStoryRepository.Destroy(entity:likedStory);
-        await _unitOfWork.SaveAsync();
-
-        return true;
-    }
 }

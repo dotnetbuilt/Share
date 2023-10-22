@@ -77,13 +77,4 @@ public class UsersController:BaseController
             Message = "Success",
             Data = await _service.ChangePassword(email, currentPassword, newPassword)
         });
-
-    [HttpDelete("destroy")]
-    public async ValueTask<IActionResult> DestroyAsync(long userId)
-        => Ok(new Response
-        {
-            StatusCode = 200,
-            Message = "Success",
-            Data = await _service.DestroyAsync(userId)
-        });
 }

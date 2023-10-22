@@ -8,5 +8,4 @@ public interface IUserProfileImageService
     ValueTask<UserProfileImageResultDto> AddAsync(long userId, IFormFile image);
     ValueTask<UserProfileImageResultDto> RetrieveByIdAsync(long imageId);
     ValueTask<bool> RemoveAsync(long imageId);
-    ValueTask<bool> DestroyAsync(long profileImageId);
 }
