@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using Share.Api.Extensions;
 using Share.Api.Middlewares;
 using Share.DataAccess.Contexts;
@@ -19,6 +20,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddCustomService();
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 PathHelper.WebRootPath = Path.GetFullPath("wwwroot");
 
