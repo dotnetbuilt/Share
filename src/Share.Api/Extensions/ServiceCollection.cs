@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Share.DataAccess.Contracts;
 using Share.DataAccess.Repositories;
 using Share.Service.Interfaces.Attachments;
+using Share.Service.Interfaces.Auth;
 using Share.Service.Interfaces.Comments;
 using Share.Service.Interfaces.Follows;
 using Share.Service.Interfaces.LikedStories;
@@ -14,6 +15,7 @@ using Share.Service.Interfaces.UserProfileImages;
 using Share.Service.Interfaces.Users;
 using Share.Service.Mappers;
 using Share.Service.Services.Attachments;
+using Share.Service.Services.Auth;
 using Share.Service.Services.CommentService;
 using Share.Service.Services.Follows;
 using Share.Service.Services.LikedStories;
@@ -40,6 +42,7 @@ public static class ServiceCollection
         services.AddScoped<ISavedStoryService, SavedStoryService>();
         services.AddScoped<ILikedStoryService, LikedStoryService>();
         services.AddScoped<ICommentService, CommentService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         services.AddAutoMapper(typeof(MappingProfile));
     }

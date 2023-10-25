@@ -26,7 +26,7 @@ public class AuthService:IAuthService
         var user = await _unitOfWork.UserRepository.SelectAsync(expression: user => user.Email == email) ??
                    throw new NotFoundException(message: "User is not found");
 
-        var isPasswordVerified = PasswordHasher.Verify(currentPassword:user.Password,checkingPassword:password);
+        var isPasswordVerified = PasswordHasher.Verify(checkingPassword:password,currentPassword:user.Password);
         if (isPasswordVerified == false)
             throw new CustomException(message: "Password is incorrect",statusCode:404);
         
@@ -34,7 +34,7 @@ public class AuthService:IAuthService
         var tokenKey = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new Claim[]
+            Subject = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim("Id", user.Id.ToString()),
