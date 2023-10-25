@@ -43,6 +43,8 @@ public static class ServiceCollection
         services.AddScoped<ILikedStoryService, LikedStoryService>();
         services.AddScoped<ICommentService, CommentService>();
         services.AddScoped<IAuthService, AuthService>();
+        
+        services.AddRouting(options => options.LowercaseUrls = true);
 
         services.AddAutoMapper(typeof(MappingProfile));
     }
