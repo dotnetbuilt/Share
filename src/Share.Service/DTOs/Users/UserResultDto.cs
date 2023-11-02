@@ -8,5 +8,5 @@ public class UserResultDto
     public string Firstname { get; set; }
     public string Lastname { get; set; }
     public string Email { get; set; }
-    public Role Role { get; set; }
+    public UserRole Role { get; set; }
 }

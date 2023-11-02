@@ -14,6 +14,7 @@ public class AuthController:BaseController
         _service = service;
     }
 
+    
     [HttpPost("login")]
     public async ValueTask<IActionResult> LoginAsync(string email, string password)
         => Ok(new Response

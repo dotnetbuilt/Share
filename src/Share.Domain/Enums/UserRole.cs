@@ -1,6 +1,6 @@
 namespace Share.Domain.Enums;
 
-public enum Role
+public enum UserRole
 {
     User = 1,
     Admin
