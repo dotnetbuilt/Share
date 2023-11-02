@@ -8,24 +8,31 @@ using Share.Service.Helpers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
+// Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+//Add Authorization
+builder.Services.ConfigureSwagger();
+
+//Add custom services
 builder.Services.AddCustomService();
 
+//Add JWT 
 builder.Services.AddJwt(builder.Configuration);
 
+//Add Serilog
 var logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
     .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+
 
 PathHelper.WebRootPath = Path.GetFullPath("wwwroot");
 
